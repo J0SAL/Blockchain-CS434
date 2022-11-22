@@ -50,4 +50,19 @@ contract crowdfunding{
 		user.transfer(contributors[msg.sender]);
 		contributors[msg.sender] = 0;
 	}
+
+	modifier onlyManager(){
+		require(msg.sender == manager, "Only manager can call the function");
+		_;
+	}
+
+	function createRequests(string memory _description, address payable _recipient, uint _value) public onlyManager{
+		Request storage newRequest = requests[numRequests];
+		numRequests++;
+		newRequest.eventName = _description;
+		newRequest.recipient = _recipient;
+		newRequest.value = _value;
+		newRequest.completed = false;
+		newRequest.noOfVoters = 0;
+	}
 }
