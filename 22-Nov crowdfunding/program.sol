@@ -10,6 +10,17 @@ contract crowdfunding{
 	uint public raisedAmount;
 	uint public noOfContributors;
 
+	struct Request{
+		string eventName;
+		address payable recipient;
+		uint value;
+		bool completed;
+		uint noOfVoters;
+		mapping(address=>bool) voters;
+	}
+	mapping(uint=>Request) public requests;
+	uint public numRequests;
+
 	constructor(uint _target, uint _deadline){
 		target = _target;
 		deadline = block.timestamp + _deadline;
