@@ -28,4 +28,8 @@ contract crowdfunding{
 		contributors[msg.sender]+=msg.value;
 		raisedAmount+=msg.value;
 	}
+
+	function getContractBalance() public view returns(uint){
+		return address(this).balance;
+	}
 }
