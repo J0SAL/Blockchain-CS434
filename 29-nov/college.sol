@@ -8,14 +8,30 @@ contract College{
         string contact;
         string college;
     } 
-    Student public student;
+    Student private student;
 
-    function getData(
+    function setData(
         string memory name,
         string memory email,
         string memory contact,
         string memory college
     ) public {
         student = Student(name, email, contact, college);
+    }
+
+    function getName() public view returns (string memory){
+        return student.name;
+    }
+
+    function getEmail() public view returns (string memory){
+        return student.email;
+    }
+
+    function getContact() public view returns (string memory){
+        return student.contact;
+    }
+
+    function getCollege() public view returns (string memory){
+        return student.college;
     }
 }
